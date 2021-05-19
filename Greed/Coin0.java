@@ -13,12 +13,23 @@ public class Coin0 {
 	}
 	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);		
+		Scanner sc = new Scanner(System.in);	
 		int n = sc.nextInt();
 		int pay = sc.nextInt();
+		while(n > 10 || n < 0) {
+			System.out.println("동전은 1~10가지여야 합니다.");
+			n = sc.nextInt();
+		}
 		int[] coin = new int[n];
-		for(int i = 0 ; i < n ; i ++) {
+		for(int i = 0 ; i < n ;) {
 			coin[i] = sc.nextInt();
+			if(i == 0 && coin[i] != 1) {
+				System.out.println("첫번째 동전은 1이어야 합니다.");
+			}else if(i != 0 && coin[i] % coin[i-1] != 0) {
+				System.out.println("동전은 이전 동전의 배수의 가치여야 합니다.");
+			}else {
+				i++;
+			}
 		}
 		sc.close();
 		Coin0 gt = new Coin0(coin);
@@ -36,3 +47,11 @@ public class Coin0 {
 	}
 
 }
+/*
+ 	그리드 알고리즘1
+	거스름돈 구하는 클래스
+	첫줄 입력에 동전 종류N과 거스름돈M을 입력 (1 <= N <= 10, 1<= M)
+	두번째줄부터 N+1줄까지 각 동전의 가치를 입력 (첫 입력은 무조건 1이어야 하고, 다음 입력은 이전 입력의 배수여야만 한다.)
+	동전의 개수를 출력하고 종료한다.
+*/
+
