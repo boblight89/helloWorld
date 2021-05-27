@@ -1,6 +1,7 @@
 package test;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class AdventureGuild {
@@ -16,14 +17,34 @@ public class AdventureGuild {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int[] f = new int[n];
+		Random r = new Random();
 		for(int i = 0 ; i < n ; i++) {
-			f[i] = sc.nextInt();
+			f[i] = sc.nextInt();	//수동
+//			f[i] = r.nextInt(n+1);	//자동
 		}
-	
+		sc.close();
+		long bf;
+		long af;
+		int result;
+		
 		AdventureGuild ag = new AdventureGuild(f);
 		
-		int result = ag.getMaxGroup();
+		for(int i = 0 ; i < ag.fear.length ; i++) {
+			System.out.print(ag.fear[i] + " ");
+			if(i > 20) break;
+		}
+		System.out.println("");
+		bf = System.currentTimeMillis();
+		result = ag.getMaxGroup();
+		af = System.currentTimeMillis();
 		System.out.println(result);
+		System.out.println("time : "+(af - bf)+ "ms");
+		
+		bf = System.currentTimeMillis();
+		result = ag.advancedGetMaxGroup();
+		af = System.currentTimeMillis();
+		System.out.println(result);
+		System.out.println("time : "+(af - bf)+ "ms");
 	}
 
 	private int getMaxGroup() {
@@ -41,6 +62,19 @@ public class AdventureGuild {
 			require -= 1;	//인원수를 줄임
 			if(require == 0) {
 				result += 1;
+			}
+		}
+		return result;
+	}
+	
+	private int advancedGetMaxGroup() {	//참고 서적에서 사용한 코드. 더 빠르게 답을 출력한다.
+		int result = 0;
+		int count = 0;
+		for(int i = 0; i < fear.length ; i++) {
+			count+=1;
+			if(fear[i] <= count) {
+				result+=1;
+				count = 0;
 			}
 		}
 		return result;
