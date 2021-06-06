@@ -1,30 +1,39 @@
 package test;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class OilCost {
 
 	long[] cost;
 	long[] distance;
 	
-	public OilCost(Scanner sc,int n) {
+	public OilCost(BufferedReader br, StringTokenizer st, int n) throws IOException {
 		distance = new long[n-1];
 		cost = new long[n];
+		st = new StringTokenizer(br.readLine()," ");
 		for(int i = 0 ; i < distance.length; i++) {
-			distance[i] = sc.nextInt();
+			distance[i] = Integer.parseInt(st.nextToken());
 		}
 
+		st = new StringTokenizer(br.readLine()," ");
 		for(int i = 0 ; i < cost.length; i++) {
-			cost[i] = sc.nextInt();
+			cost[i] = Integer.parseInt(st.nextToken());
 		}
 	}
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
+	public OilCost(int n) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine()," ");
+		int n = Integer.parseInt(st.nextToken());
 		
-		OilCost oil = new OilCost(sc, n);
-		sc.close();
+		OilCost oil = new OilCost(br, st, n);
 		
 		long result = oil.getMinCost();
 		System.out.println(result);
@@ -49,4 +58,10 @@ public class OilCost {
  첫줄 - 도시 수 N (2 <= N <= 100,000)
  둘째줄 - N-1만큼의 각 도시간 거리 (각 거리는 1이상 1,000,000,000 이하의 자연수)
  셋째줄 - N만큼의 각 도시별 기름값 (각 기름값음 1이상 1,000,000,000 이하의 자연수)
+ 
+ 입력 예시		출력예시
+ 4			18
+ 2 3 1
+ 5 2 4 1
+
  */

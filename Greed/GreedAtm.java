@@ -1,7 +1,10 @@
 package test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class GreedAtm {
 
@@ -12,14 +15,15 @@ public class GreedAtm {
 		Arrays.sort(person);
 	}
 	
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(bf.readLine()," ");
+		int n = Integer.parseInt(st.nextToken());
 		int[] p = new int[n];
 		for(int i = 0 ; i < n ; i++) {
-			p[i] = sc.nextInt();
+			st = new StringTokenizer(bf.readLine()," ");
+			p[i] = Integer.parseInt(st.nextToken());
 		}
-		sc.close();
 		
 		GreedAtm mn = new GreedAtm(p);
 		
