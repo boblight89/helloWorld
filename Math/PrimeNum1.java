@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class PrimeNum_BruteForce {
+public class PrimeNum1 {
 
 	private static boolean isPrime(int num) {
 		boolean result = true;
